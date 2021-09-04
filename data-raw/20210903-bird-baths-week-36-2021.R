@@ -28,25 +28,54 @@ db_bird_baths %>% dplyr::glimpse()
 
 # Explorar os dados -------------------------------------------------------
 
-# Quantidade de passáros urbanas x rurais
+# quantidade de passáros urbanas x rurais
 db_bird_baths %>% 
     dplyr::group_by(urban_rural) %>% 
     dplyr::summarise(qtd = sum(bird_count))
 
+
+# quantidade de espécies urbanas x rurais
 db_bird_baths %>% 
     dplyr::group_by(urban_rural) %>% 
     dplyr::summarise(n = dplyr::n())
 
 
-
+# visualizar no excel para ter certeza se fiz corretamente
 db_bird_baths %>%
     dplyr::group_by(urban_rural) %>%
     viewxl::view_in_xl()
         
 
+# pensar em como juntar esses três itens em apenas uma base ou
+# montar uma função
 
 # Espécies mais comuns no meio urbano
+db_bird_baths %>% 
+    dplyr::filter(urban_rural == "Rural") %>% 
+    dplyr::group_by(bird_type) %>% 
+    dplyr::summarise(qtd_birds = sum(bird_count)) %>% 
+    dplyr::arrange(dplyr::desc(qtd_birds))
 
 
 # Espécies mais comuns no meio rural
+db_bird_baths %>% 
+    dplyr::filter(urban_rural == "Urban") %>% 
+    dplyr::group_by(bird_type) %>% 
+    dplyr::summarise(qtd_birds = sum(bird_count)) %>% 
+    dplyr::arrange(dplyr::desc(qtd_birds))
+
+
+# Espécies mais comum na base
+db_bird_baths %>% 
+    #dplyr::filter(urban_rural) %>% 
+    dplyr::group_by(bird_type) %>% 
+    dplyr::summarise(qtd_birds = sum(bird_count)) %>% 
+    dplyr::arrange(dplyr::desc(qtd_birds))
+
+
+# Dataviz -----------------------------------------------------------------
+
+# pensei em algo como o gráfico dos pinguins, com imagens dos passáros
+# coladas no gráfico. Acho que gráficos simples de barras já servem
+
 
