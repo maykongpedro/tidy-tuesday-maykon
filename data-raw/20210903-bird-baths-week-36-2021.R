@@ -79,6 +79,21 @@ db_bird_baths %>%
 # pensei em algo como o gráfico dos pinguins, com imagens dos passáros
 # coladas no gráfico. Acho que gráficos simples de barras já servem
 
+# definir configurações para o gráfico
+config_plot <-
+    c(
+        "urban" = "#35B779",
+        "rural" = "#ED7953",
+        "background" = "#F5F5F2",
+        "text" = "#22211D",
+        "text_fam" = "Crimson",
+        "eixo_x_title" = "Quantidade de pássaros",
+        "eixo_y_title" = "Pássaro - Nome comum",
+        "title" = "",
+        "caption" = "**Datasource:** xxxxx | **@Dataviz:** maykongpedro"
+    )
+
+
 especies_por_local %>% 
     dplyr::filter(urban_rural == "Urban") %>% 
     dplyr::slice(1:15) %>% 
